@@ -1,0 +1,5 @@
+Arroz,Arroz Tucapel,2000,25/05/2023
+Arroz2,Arroz Tucapel,2000,25/05/2023
+Arroz3,Arroz Tucapel,2000,25/05/2023
+Arroz4,Arroz Tucapel,2000,25/05/2023
+Arroz5,Arroz Tucapel,2000,25/05/2023

@@ -10,7 +10,9 @@ class Menu:
             print("3. Crear reporte de productos")
             print("4. Buscar producto por nombre")
             print("5. Eliminar producto")
-            print("6. Salir")
+            print("6. Cargar masiva de productos")
+            print("7. Salir")
+            
             opcion = int(input("Ingrese una opcion: "))
             if opcion == 1:
                 self.agregar_producto()
@@ -23,6 +25,8 @@ class Menu:
             elif opcion == 5:
                 self.eliminar_productos()   
             elif opcion == 6:
+                self.carga_masiva()
+            elif opcion == 7:
                 break
             else:
                 print("Opcion incorrecta")
@@ -58,3 +62,11 @@ class Menu:
         nombre_archivo = input("Ingrese el nombre del archivo: ")
         with open(nombre_archivo, "w") as f:
             f.write("******Reporte de productos********\n")
+            #f.write(self.listar_producto() + "\n")
+            for producto in self.tienda.lista_productos:
+                f.write(str(producto) + "\n")
+        print(f"Reporte {nombre_archivo} generado con exito")
+
+    def carga_masiva(self):
+        nombre_archivo = input("Ingrese el nombre del archivo: ")
+        self.tienda.cargar_desde_archivo(nombre_archivo)
