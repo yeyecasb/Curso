@@ -8,8 +8,9 @@ class Menu:
             print("1. Agregar producto")
             print("2. Listar producto")
             print("3. Crear reporte de productos")
-            print("4. Eliminar producto")
-            print("5. Salir")
+            print("4. Buscar producto por nombre")
+            print("5. Eliminar producto")
+            print("6. Salir")
             opcion = int(input("Ingrese una opcion: "))
             if opcion == 1:
                 self.agregar_producto()
@@ -18,8 +19,10 @@ class Menu:
             elif opcion == 3:
                 self.crear_reporte()
             elif opcion == 4:
-                self.eliminar_productos()   
+                self.buscar_por_nombre()
             elif opcion == 5:
+                self.eliminar_productos()   
+            elif opcion == 6:
                 break
             else:
                 print("Opcion incorrecta")
@@ -38,4 +41,20 @@ class Menu:
 
     def eliminar_productos(self):
         nombre=input("Ingrese el nombre del producto a eliminar: ")
+
         self.tienda.eliminar_item(nombre)
+
+    def buscar_por_nombre(self):
+        nombre_abarrote = input("Ingrese el nombre del producto a buscar: ")
+        resultado_busqueda = self.tienda.buscar_producto(nombre_abarrote)
+        if len(resultado_busqueda) == 0:
+            print("No se encontro el producto")
+        else:
+            print(f"Se encontró el producto {nombre_abarrote}")
+            for abarrote in resultado_busqueda:
+                print(abarrote) #print(abarrote.nombre + " " + abarrote.precio)
+
+    def  crear_reporte(self):
+        nombre_archivo = input("Ingrese el nombre del archivo: ")
+        with open(nombre_archivo, "w") as f:
+            f.write("******Reporte de productos********\n")
