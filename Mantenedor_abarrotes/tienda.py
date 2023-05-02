@@ -12,7 +12,18 @@ class Tienda:
             print(item)
 
     def eliminar_item(self, item):
-        self.lista_productos.remove(item)
+        producto_a_eliminar = []
+        for abarrote in self.lista_productos:
+            if abarrote.nombre == item:
+                producto_a_eliminar.append(abarrote)
+        
+        if len(producto_a_eliminar) == 0:
+            print("No se encontraron productos a eliminar")
+        
+        else:
+            for producto in producto_a_eliminar:
+                self.lista_productos.remove(producto)
+            print("Producto eliminado")
 
     def buscar_producto(self, item):
         productos_encontrados = []
@@ -33,4 +44,37 @@ class Tienda:
                     fecha_vencimiento = campos[3]
                     obj_producto = Producto(nombre, descripcion, precio, fecha_vencimiento)
                     self.agregar_item(obj_producto)
+    
+    def modificar_item(self, item):
+        producto_encontrado = []
+        for abarrote in self.lista_productos:
+            if abarrote.nombre == item:
+                producto_encontrado.append(abarrote)
+            
+        if len(producto_encontrado) == 0:
+            print("No se encontraron productos")
+        
+        else:
+            for item in producto_encontrado:
+                print(f"Seleccione el parametro a modificar del producto {item}")
+                print("1.- Nombre")
+                print("2.- Descripcion")
+                print("3.- Precio")
+                print("4.- Fecha de vencimiento")
+                opcion = input("Ingrese una opcion: ")
+                if opcion == "1":
+                    parametro = input("Ingrese el nuevo nombre: ")
+                    item.nombre = parametro
+                elif opcion == "2":
+                    parametro = input("Ingrese la nueva descripcion: ")
+                    item.descripcion = parametro
+                elif opcion == "3":
+                    parametro = input("Ingrese el nuevo precio: ")
+                    item.precio = parametro
+                elif opcion == "4":
+                    parametro = input("Ingrese la nueva fecha de vencimiento: ")
+                    item.vencimiento = parametro
+                else:
+                    print("Opcion invalida.")
+                print(f"El producto se ha modificado a:  {item}")
             

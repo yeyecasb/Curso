@@ -10,8 +10,9 @@ class Menu:
             print("3. Crear reporte de productos")
             print("4. Buscar producto por nombre")
             print("5. Eliminar producto")
-            print("6. Cargar masiva de productos")
-            print("7. Salir")
+            print("6. Modificar un producto")
+            print("7. Cargar masiva de productos")
+            print("8. Salir")
             
             opcion = int(input("Ingrese una opcion: "))
             if opcion == 1:
@@ -25,8 +26,10 @@ class Menu:
             elif opcion == 5:
                 self.eliminar_productos()   
             elif opcion == 6:
-                self.carga_masiva()
+                self.modificar_producto()
             elif opcion == 7:
+                self.carga_masiva()
+            elif opcion == 8:
                 break
             else:
                 print("Opcion incorrecta")
@@ -45,8 +48,8 @@ class Menu:
 
     def eliminar_productos(self):
         nombre=input("Ingrese el nombre del producto a eliminar: ")
-
         self.tienda.eliminar_item(nombre)
+        
 
     def buscar_por_nombre(self):
         nombre_abarrote = input("Ingrese el nombre del producto a buscar: ")
@@ -70,3 +73,7 @@ class Menu:
     def carga_masiva(self):
         nombre_archivo = input("Ingrese el nombre del archivo: ")
         self.tienda.cargar_desde_archivo(nombre_archivo)
+
+    def modificar_producto(self):
+        nombre =  input("Ingrese el nombre del producto a modificar: ")
+        self.tienda.modificar_item(nombre)
