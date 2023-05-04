@@ -1,15 +1,16 @@
 from producto import Producto
+import random
 
 class Tienda:
     def __init__(self):
-        self.lista_productos = []
+        self.lista_productos = {}
     
-    def agregar_item(self, item):
-        self.lista_productos.append(item)
+    def agregar_item(self, clave, item):
+        self.lista_productos[clave]=item
     
     def listar_items(self):
-        for item in self.lista_productos:
-            print(item)
+        for clave,item in self.lista_productos.items():
+            print(clave, "-", item)
 
     def eliminar_item(self, item):
         producto_a_eliminar = []
@@ -25,10 +26,10 @@ class Tienda:
                 self.lista_productos.remove(producto)
             print("Producto eliminado")
 
-    def buscar_producto(self, item):
-        productos_encontrados = []
-        for abarrote in self.lista_productos:
-            if abarrote.nombre == item:
+    def buscar_producto(self, clave):
+        productos_encontrados = {}
+        for clave, abarrote in self.lista_productos.items():
+            if abarrote.nombre == clave:
                 productos_encontrados.append(abarrote)
         return productos_encontrados
     
@@ -37,13 +38,14 @@ class Tienda:
         with open(ruta_relativa, "r") as f:
             for linea in f:
                 if linea != "\n":
+                    clave = random.randint(0,1000)
                     campos = linea.strip().split(",")
                     nombre = campos[0]
                     descripcion = campos[1]
                     precio = float(campos[2])
                     fecha_vencimiento = campos[3]
                     obj_producto = Producto(nombre, descripcion, precio, fecha_vencimiento)
-                    self.agregar_item(obj_producto)
+                    self.agregar_item(clave, obj_producto)
     
     def modificar_item(self, item):
         producto_encontrado = []
