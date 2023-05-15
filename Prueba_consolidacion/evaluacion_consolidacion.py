@@ -38,6 +38,7 @@ print("")
 print("Lista de otros")
 for  nombre in otros:
     print(nombre)
+print("")
 
 
 
